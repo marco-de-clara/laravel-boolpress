@@ -97,14 +97,11 @@ class PostController extends Controller
             'title' => 'required|max:255|unique:posts,title,'.$id,
             'content' => 'required'
         ]);
-
-        $dati = $request->all();
-        $slug = Str::of($dati['title'])->slug('-');
+        $data = $request->all();
+        $slug = Str::of($data['title'])->slug('-');
         $dati['slug'] = $slug;
-
         $post = Post::find($id);
-        $post->update($dati);
-        
+        $post->update($data);
         return redirect()->route('admin.posts.index');
     }
 

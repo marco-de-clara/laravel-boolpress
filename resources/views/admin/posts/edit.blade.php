@@ -5,19 +5,19 @@
         <div class="row">
             <div class="col-12">
                 <div class="d-flex align-items-center">
-                    <h1 class="mt-3 mb-3">Posts</h1>
+                    <h1 class="mt-3 mb-3">Edit Post</h1>
                 </div>
 
-                <form action="{{ route('admin.posts.store') }}" method="POST">
+                <form action="{{ route('admin.posts.update', ['post' => $post->id]) }}" method="POST">
                     @csrf
-                    
+                    @method('PUT')
                     <div class="form-group">
                         <label for="title">Title</label>
-                        <input type="string" name="title" class="form-control" id="title" placeholder="Title" value="{{ old('title') }}">
+                        <input type="string" name="title" class="form-control" id="title" placeholder="Title" value="{{ old('title', $post->title) }}">
                     </div>
                     <div class="form-group">
                         <label for="content">Content</label>
-                        <textarea type="text" name="content" class="form-control" id="content" placeholder="Content">{{ old('content') }}</textarea>
+                        <textarea type="text" name="content" class="form-control" id="content" placeholder="Content">{{ old('content', $post->content) }}</textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Save</button>
                 </form>   
