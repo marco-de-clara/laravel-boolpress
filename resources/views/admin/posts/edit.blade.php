@@ -25,7 +25,7 @@
                             <option value="">Select a category</option>
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}"
-                                    {{ ($post->category->id ?? '') == $category->id ? 'selected' : ''}}>
+                                    {{ old('category_id, ('post->category->id ?? '') ) == $category->id ? 'selected' : '' }}>
                                     {{ $category->name }}
                                 </option>
                             @endforeach
