@@ -20,6 +20,14 @@
                     {{ $post->slug }}
                 </p>
                 <p>
+                    <strong>Tags: </strong>
+                    @forelse ($post->tags as $tag)
+                        {{ $tag->name}}{{ $loop->last ? '' : ', '}}
+                    @empty
+                        -
+                    @endforelse
+                </p>
+                <p>
                     <strong>Created at: </strong>
                     {{ $post->created_at }}
                 </p>

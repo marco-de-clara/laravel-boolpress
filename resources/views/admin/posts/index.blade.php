@@ -18,6 +18,7 @@
                             <th>Title</th>
                             <th>Slug</th>
                             <th>Actions</th>
+                            <th>Tags</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -28,6 +29,13 @@
                                     <td>{{ $post->title }}</td>
                                     <td>{{ $post->slug }}</td>
                                     <td>{{ $post->category->name ?? '-' }}</td>
+                                    <td>
+                                        @forelse ($post->tags as $tag)
+                                            {{ $tag->name }}{{ $loop->last ? '' : ', '}}
+                                        @empty
+                                            -
+                                        @endforelse
+                                    </td>
                                     <td>
                                         <a class="btn btn-small btn-info" href="{{ route('admin.posts.show', ['post' => $post->id]) }}">Details</a>
                                         <a class="btn btn-small btn-warning" href="{{ route('admin.posts.edit', ['post' => $post->id]) }}">Edit</a>
